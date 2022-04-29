@@ -1,22 +1,22 @@
-#include "Arduino.h"
+#include "CUI.hpp"
+#include "Log.hpp"
+#include "config.hpp"
+
+namespace {
+void serialSetup(HardwareSerial &serial, unsigned long baud) {
+  serial.begin(baud);
+  serial.println(F("Booting PVE Control..."));
+}
+} // namespace
 
 void setup() {
-  // put your setup code here, to run once:
-  Serial.begin(115200);
-  //PSRAM Initialisation
-  if (psramInit()) {
-    Serial.println("\nThe PSRAM is correctly initialized");
-  } else {
-    Serial.println("\nPSRAM does not work");
-  }
-
-  log_d("Total heap: %d", ESP.getHeapSize());
-  log_d("Free heap: %d", ESP.getFreeHeap());
-  log_d("Total PSRAM: %d", ESP.getPsramSize());
-  log_d("Free PSRAM: %d", ESP.getFreePsram());
+  serialSetup(Serial, 115200);
+  LOG::setup();
+  CUI::attach();
+  CUI::registerCUI();
 }
-
+// put your setup code here, to run once:
 void loop() {
+  shell.executeIfInput();
   // put your main code here, to run repeatedly:
-
 }
