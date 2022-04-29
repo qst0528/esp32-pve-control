@@ -1,0 +1,3 @@
+# 'product' changed with cp210x-cfg from "CP2102N USB to UART Bridge Controller"
+# https://github.com/irrwisch1/cp210x-cfg
+KERNEL=="ttyUSB[0-9]*", ATTRS{idVendor}=="10c4", ATTRS{idProduct}=="ea60", ATTRS{product}=="Proxmox VE Control", ATTRS{serial}=="fc47696138e9eb11860a9d8787c335f3", SYMLINK+="ttyPVEControl"
