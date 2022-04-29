@@ -59,3 +59,6 @@ void IP::onWiFiEvent(WiFiEvent_t event)
       break;
     }
 }
+
+void IP::init() {}
+void IP::wait() {}

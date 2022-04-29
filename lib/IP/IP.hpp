@@ -7,6 +7,6 @@ namespace IP {
   extern char     const* SSID;
   extern char     const* PASSPHRASE;
   extern void onWiFiEvent(WiFiEvent_t);
-  void init();
-  void wait();
+  extern void init();
+  extern void wait();
 } // namespace IP
