@@ -1,0 +1,12 @@
+#include <Arduino.h>
+#include <ETH.h>
+
+namespace IP {
+  extern char     const* HOSTNAME;
+  extern uint16_t        OTA_PORT;
+  extern char     const* SSID;
+  extern char     const* PASSPHRASE;
+  extern void onWiFiEvent(WiFiEvent_t);
+  void init();
+  void wait();
+} // namespace IP

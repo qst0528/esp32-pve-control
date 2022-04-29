@@ -1,5 +1,6 @@
 #include "CUI.hpp"
 #include "Log.hpp"
+#include "IP.hpp"
 #include "config.hpp"
 
 namespace {
