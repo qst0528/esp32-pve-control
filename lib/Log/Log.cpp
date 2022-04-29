@@ -1,4 +1,3 @@
-#include <Arduino.h>
 #include "Log.hpp"
 
 void LOG::setup() {
