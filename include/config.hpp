@@ -1,7 +1,7 @@
-Print     *LOG::SINK  = &Serial;
-const int  LOG::LEVEL = 4;
+Print&          LOG::SINK      = Serial;
+int             LOG::LEVEL     = 4;
 
-Stream    &CUI::REQUESTER = Serial;
+Stream&         CUI::REQUESTER = Serial;
 
 namespace WIFI {
 extern const __FlashStringHelper *HOSTNAME;

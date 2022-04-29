@@ -2,7 +2,7 @@
 #include <ArduinoLog.h>
 
 namespace LOG {
-  extern Print     *SINK;
-  extern const int  LEVEL;
+  extern Print& SINK;
+  extern int    LEVEL;
   void setup();
 } // namespace LOG
