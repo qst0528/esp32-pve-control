@@ -4,7 +4,7 @@
 namespace CUI {
   extern Stream& REQUESTER;
   typedef struct LookupVals lookupVals;
-  int  lookup(const char *, const lookupVals[]);
-  void attach();
-  void registerCUI();
+  extern int  lookup(char const*, const lookupVals[]);
+  extern void attach();
+  extern void registerCUI();
 } // namespace CUI
