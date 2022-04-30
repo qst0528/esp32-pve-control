@@ -9,4 +9,5 @@ namespace IP {
   extern void onWiFiEvent(WiFiEvent_t);
   extern void init();
   extern void wait();
+  extern void registerCUI();
 } // namespace IP

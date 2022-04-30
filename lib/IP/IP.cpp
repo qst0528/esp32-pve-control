@@ -62,3 +62,4 @@ void IP::onWiFiEvent(WiFiEvent_t event)
 
 void IP::init() {}
 void IP::wait() {}
+void IP::registerCUI() {}
