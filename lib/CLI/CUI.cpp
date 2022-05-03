@@ -3,9 +3,9 @@
 
 namespace {
 int printVersion(int argc = 0, char **argv = nullptr) {
-  shell.println(F(">> PVE Control"));
-  shell.println(F(">>   Git revision: " GIT_REV));
-  shell.println(F(">>   Build date:   " __DATE__));
+  shell.println(F(">>> PVE Control"));
+  shell.println(F("    --> Git revision: " GIT_REV));
+  shell.println(F("    --> Build date:   " __DATE__));
   return EXIT_SUCCESS;
 }
 } // namespace
@@ -26,13 +26,13 @@ int CUI::lookup(const char *aName, const CUI::lookupVals entries[]) {
 }
 
 void CUI::attach() {
-  Log.trace(F("Attaching SimpleShell to Serial..." CR));
+  Log.infoln(F(">>> Attaching SimpleShell to Serial..."));
   shell.attach(REQUESTER);
-  Log.notice(F("SimpleShell attached." CR));
-  Log.notice(F("Type \"help\" to get list of commands." CR));
+  Log.infoln(F("    --> SimpleShell attached."));
+  Log.infoln(F("    --> Type \"help\" to get list of commands."));
 }
 
 void CUI::registerCUI() {
-  Log.info(F("Adding basic CLI commands..." CR));
+  Log.infoln(F(">>> Adding basic CLI commands..."));
   shell.addCommand(F("version"), printVersion);
 }
