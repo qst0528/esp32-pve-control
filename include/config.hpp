@@ -1,5 +1,5 @@
 Print&          LOG::SINK      = Serial;
-int             LOG::LEVEL     = 4;
+int             LOG::LEVEL     = CORE_DEBUG_LEVEL;
 
 Stream&         CUI::REQUESTER = Serial;
 
