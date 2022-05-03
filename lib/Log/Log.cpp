@@ -1,6 +1,8 @@
 #include "Log.hpp"
 
 void LOG::setup() {
+  __FlashStringHelper *level_str;
+
   Log.begin(LEVEL, &SINK);
   Log.infoln(F(">>> Logging started."));
   Log.infoln(F("    --> Log level: %d (%S)"), LEVEL, level2str(LEVEL));
