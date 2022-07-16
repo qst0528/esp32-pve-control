@@ -1,4 +1,5 @@
 #include "config.hpp"
+#include "credentials.hpp"
 
 namespace {
 void serialSetup(HardwareSerial &serial, unsigned long baud) {

@@ -3,4 +3,5 @@
 .ccls
 .ccls-cache/
 include/credentials.hpp
+src/certs/
 *~
