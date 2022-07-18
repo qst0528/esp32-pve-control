@@ -2,6 +2,7 @@
 #include "Log.hpp"
 
 void IP::onWiFiEvent(WiFiEvent_t event) {
+    Log.traceln(F("WiFi Event %d occured."), event);
     switch (event) {
     case ARDUINO_EVENT_WIFI_READY:
         Log.infoln(F("WiFi interface ready"));
@@ -30,7 +31,7 @@ void IP::onWiFiEvent(WiFiEvent_t event) {
         break;
 
     case ARDUINO_EVENT_WIFI_STA_AUTHMODE_CHANGE:
-      Serial.println("Authentication mode of access point has changed");
+      Log.infoln("Authentication mode of access point has changed");
       break;
 
     case ARDUINO_EVENT_WIFI_STA_GOT_IP:
@@ -46,59 +47,59 @@ void IP::onWiFiEvent(WiFiEvent_t event) {
       break;
 
     case ARDUINO_EVENT_WIFI_STA_LOST_IP:
-      Serial.println("Lost IP address and IP address is reset to 0");
+      Log.infoln("Lost IP address and IP address is reset to 0");
       break;
 
     case ARDUINO_EVENT_WPS_ER_SUCCESS:
-      Serial.println("WiFi Protected Setup (WPS): succeeded in enrollee mode");
+      Log.infoln("WiFi Protected Setup (WPS): succeeded in enrollee mode");
       break;
 
     case ARDUINO_EVENT_WPS_ER_FAILED:
-      Serial.println("WiFi Protected Setup (WPS): failed in enrollee mode");
+      Log.infoln("WiFi Protected Setup (WPS): failed in enrollee mode");
       break;
 
     case ARDUINO_EVENT_WPS_ER_TIMEOUT:
-      Serial.println("WiFi Protected Setup (WPS): timeout in enrollee mode");
+      Log.infoln("WiFi Protected Setup (WPS): timeout in enrollee mode");
       break;
 
     case ARDUINO_EVENT_WPS_ER_PIN:
-      Serial.println("WiFi Protected Setup (WPS): pin code in enrollee mode");
+      Log.infoln("WiFi Protected Setup (WPS): pin code in enrollee mode");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_START:
-      Serial.println("WiFi access point started");
+      Log.infoln("WiFi access point started");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_STOP:
-      Serial.println("WiFi access point  stopped");
+      Log.infoln("WiFi access point  stopped");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_STACONNECTED:
-      Serial.println("Client connected");
+      Log.infoln("Client connected");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_STADISCONNECTED:
-      Serial.println("Client disconnected");
+      Log.infoln("Client disconnected");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_STAIPASSIGNED:
-      Serial.println("Assigned IP address to client");
+      Log.infoln("Assigned IP address to client");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_PROBEREQRECVED:
-      Serial.println("Received probe request");
+      Log.infoln("Received probe request");
       break;
 
     case ARDUINO_EVENT_WIFI_AP_GOT_IP6:
-      Serial.println("AP IPv6 is preferred");
+      Log.infoln("AP IPv6 is preferred");
       break;
 
     case ARDUINO_EVENT_WIFI_STA_GOT_IP6:
-      Serial.println("STA IPv6 is preferred");
+      Log.infoln("STA IPv6 is preferred");
       break;
 
     case ARDUINO_EVENT_ETH_GOT_IP6:
-      Serial.println("Ethernet IPv6 is preferred");
+      Log.infoln("Ethernet IPv6 is preferred");
       break;
 
     case ARDUINO_EVENT_ETH_START:
@@ -144,6 +145,10 @@ void IP::onWiFiEvent(WiFiEvent_t event) {
     }
 }
 
-void IP::init() {}
+void IP::init() {
+    WiFi.onEvent(onWiFiEvent);
+    WiFi.begin(IP::SSID, IP::PASSPHRASE);
+}
+
 void IP::wait() {}
 void IP::registerCUI() {}
