@@ -1,11 +1,19 @@
-#include "CUI.hpp"
-#include "Log.hpp"
-#include "IP.hpp"
+#include <Arduino.h>
+#include <CUI.hpp>
+#include <Log.hpp>
+#include <IP.hpp>
 
-Print&          LOG::SINK      = Serial;
-int             LOG::LEVEL     = CORE_DEBUG_LEVEL;
+namespace API {
+  extern char const* KEY;
+}
 
-Stream&         CUI::REQUESTER = Serial;
-
-char     const* IP::HOSTNAME   = "pve-control";
-uint16_t        IP::OTA_PORT   = 8266;
+namespace SSL {
+  extern const uint8_t root_ca_cert_start[]
+  asm("_binary_src_certs_root_ca_pem_start");
+  extern const uint8_t root_ca_cert_end[]
+  asm("_binary_src_certs_root_ca_pem_end");
+  extern const uint8_t ssl_pub_start[]
+  asm("_binary_src_certs_ssl_pub_pem_start");
+  extern const uint8_t ssl_pub_end[]
+  asm("_binary_src_certs_ssl_pub_pem_end");
+}; // namespace SSL
