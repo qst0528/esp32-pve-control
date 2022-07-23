@@ -3,8 +3,11 @@
 #include <IP.hpp>
 #include <Log.hpp>
 
-namespace API {
-extern char const *TOKEN;
+namespace PVE {
+    extern char const* HOST;
+    extern uint16_t    PORT;
+    extern char const* TOKEN;
+
 }
 
 namespace SSL {

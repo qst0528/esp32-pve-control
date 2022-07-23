@@ -24,8 +24,8 @@ void loop() {
     shell.executeIfInput();
     // put your main code here, to run repeatedly:
 
-    https.setAuthorization(API::TOKEN);
-    https.begin("pve.home.intranet", 8006, "/api2/json/nodes/pve/qemu/400/status/start", (char *) SSL::root_ca_cert_start);
+    https.setAuthorization(PVE::TOKEN);
+    https.begin(PVE::HOST, PVE::PORT, "/api2/json/nodes/pve/qemu/400/status/start", (char *) SSL::root_ca_cert_start);
     https.POST("node=pve&vmid=400");
     https.end();
     delay(60000);
