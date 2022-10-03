@@ -3,7 +3,7 @@
 
 namespace {
     HTTPClient https;
-    int dirty = 0;
+    volatile int dirty = 0;
 
     void serialSetup(HardwareSerial &serial, unsigned long baud) {
         serial.begin(baud);
