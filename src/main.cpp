@@ -3,7 +3,7 @@
 
 namespace {
     HTTPClient https;
-    volatile int dirty = 0;
+    volatile int eventID = 0;
 
     void serialSetup(HardwareSerial &serial, unsigned long baud) {
         serial.begin(baud);
@@ -19,9 +19,24 @@ namespace {
       https.end();
     }
 
+    void sendVMResume() {
+      https.setAuthorization(PVE::TOKEN);
+      https.begin(PVE::HOST, PVE::PORT,
+                  "/api2/json/nodes/pve/qemu/400/status/resume",
+                  (char *)SSL::root_ca_cert_start);
+      https.POST("node=pve&vmid=400");
+      https.end();
+    }
+
     void func_on() {
         noInterrupts();
-        dirty = 1;
+        eventID = 1;
+        interrupts();
+    }
+
+    void func_resume() {
+        noInterrupts();
+        eventID = 2;
         interrupts();
     }
 } // namespace
@@ -34,7 +49,9 @@ void setup() {
     CUI::registerCUI();
     IP::init();
     https.setReuse(true);
+    pinMode(18, INPUT_PULLUP);
     pinMode(22, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(18), func_resume, FALLING);
     attachInterrupt(digitalPinToInterrupt(22), func_on, FALLING);
 }
 
@@ -42,9 +59,15 @@ void setup() {
 void loop() {
     shell.executeIfInput();
     // put your main code here, to run repeatedly:
-    if (dirty) {
-        Serial.write("Pushed\n");
+    switch (eventID) {
+    case 0:
+        break;
+    case 1:
         sendVMStart();
-        dirty = 0;
+        break;
+    case 2:
+        sendVMResume();
+        break;
     }
+    eventID = 0;
 }
