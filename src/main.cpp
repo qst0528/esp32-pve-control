@@ -39,6 +39,20 @@ namespace {
         eventID = 2;
         interrupts();
     }
+
+    void handleEvents() {
+      switch (eventID) {
+      case 0:
+        break;
+      case 1:
+        sendVMStart();
+        break;
+      case 2:
+        sendVMResume();
+        break;
+      }
+      eventID = 0;
+    }
 } // namespace
 
 
@@ -58,16 +72,5 @@ void setup() {
 // put your setup code here, to run once:
 void loop() {
     shell.executeIfInput();
-    // put your main code here, to run repeatedly:
-    switch (eventID) {
-    case 0:
-        break;
-    case 1:
-        sendVMStart();
-        break;
-    case 2:
-        sendVMResume();
-        break;
-    }
-    eventID = 0;
+    handleEvents();
 }
