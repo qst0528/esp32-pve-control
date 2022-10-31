@@ -67,6 +67,7 @@ void setup() {
     pinMode(22, INPUT_PULLUP);
     attachInterrupt(digitalPinToInterrupt(18), func_resume, FALLING);
     attachInterrupt(digitalPinToInterrupt(22), func_on, FALLING);
+    pinMode(34, OUTPUT);
 }
 
 // put your setup code here, to run once:
