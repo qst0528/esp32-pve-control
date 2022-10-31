@@ -1,9 +1,12 @@
 #include "config.hpp"
 #include "HTTPClient.h"
+#include <ESP32TimerInterrupt.h>
 
 namespace {
     HTTPClient https;
-    volatile int eventID = 0;
+    volatile  int eventID    =  0;
+    const uint8_t resume_pin = 18;
+    const uint8_t start_pin  = 22;
 
     void serialSetup(HardwareSerial &serial, unsigned long baud) {
         serial.begin(baud);
@@ -63,10 +66,10 @@ void setup() {
     CUI::registerCUI();
     IP::init();
     https.setReuse(true);
-    pinMode(18, INPUT_PULLUP);
-    pinMode(22, INPUT_PULLUP);
-    attachInterrupt(digitalPinToInterrupt(18), func_resume, FALLING);
-    attachInterrupt(digitalPinToInterrupt(22), func_on, FALLING);
+    pinMode(resume_pin, INPUT_PULLUP);
+    pinMode(start_pin, INPUT_PULLUP);
+    attachInterrupt(digitalPinToInterrupt(resume_pin), func_resume, FALLING);
+    attachInterrupt(digitalPinToInterrupt(start_pin), func_on, FALLING);
     pinMode(34, OUTPUT);
 }
 
