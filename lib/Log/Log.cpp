@@ -30,7 +30,7 @@ namespace {
 void LOG::setup() {
   __FlashStringHelper *level_str;
 
-  Log.begin(LEVEL, &SINK);
+  Log.begin(LOG_DEFAULT_LEVEL, &SINK);
   Log.infoln(F(">>> Logging started."));
-  Log.infoln(F("    --> Log level: %d (%S)"), LEVEL, level2str(LEVEL));
+  Log.infoln(F("    --> Log level: %d (%S)"), Log.getLevel(), level2str(Log.getLevel()));
 }

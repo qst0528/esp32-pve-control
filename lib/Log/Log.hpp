@@ -3,6 +3,5 @@
 
 namespace LOG {
   extern Print& SINK;
-  extern int    LEVEL;
   extern void setup();
 } // namespace LOG
