@@ -15,7 +15,7 @@ namespace {
 
     void sendVMStart() {
       https.setAuthorization(PVE::TOKEN);
-      https.begin(PVE::HOST, PVE::PORT,
+      https.begin(PVE::NODE, PVE::PORT,
                   "/api2/json/nodes/pve/qemu/400/status/start",
                   (char *)SSL::root_ca_cert_start);
       https.POST("node=pve&vmid=400");
@@ -24,7 +24,7 @@ namespace {
 
     void sendVMResume() {
       https.setAuthorization(PVE::TOKEN);
-      https.begin(PVE::HOST, PVE::PORT,
+      https.begin(PVE::NODE, PVE::PORT,
                   "/api2/json/nodes/pve/qemu/400/status/resume",
                   (char *)SSL::root_ca_cert_start);
       https.POST("node=pve&vmid=400");

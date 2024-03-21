@@ -4,7 +4,7 @@
 #include <Log.hpp>
 
 namespace PVE {
-    extern char const* HOST;
+    extern char const* NODE;
     extern uint16_t    PORT;
     extern char const* TOKEN;
 
