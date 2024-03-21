@@ -5,4 +5,5 @@
 .ccls-cache/
 src/credentials.cpp
 src/certs/
+.envrc
 *~

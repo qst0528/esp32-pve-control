@@ -5,3 +5,6 @@ Let ESP32 Device control Proxmox VE servers via HTTPS API interface.
 #+begin_example
 $ curl --insecure --http1.0 -X POST --header "Authorization: PVEAPIToken=guest@pve!vmpower="(pass ls pve.adm.intranet:8006/api/vmpower) --trace-ascii /dev/stdout https://pve:8006/api2/json/nodes/pve/qemu/400/status/start
 #+end_example
+** Let direnv set environment
+Use [[https://direnv.net/][direnv]] to set environmental variable on entering directory.
+See =.envrc.example=
