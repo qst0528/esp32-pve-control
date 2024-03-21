@@ -1,7 +1,13 @@
 * esp32-pve-control
 Let ESP32 Device control Proxmox VE servers via HTTPS API interface.
 * How to install
+** Place credentials
+*** =src/certs/root-ca.pem=
+(node)/System/Certificates/pve-root-ca.pem
+*** =src/certs/ssl-pub.pem=
+(node)/System/Certificates/pve-ssl.pem
 * Debugging
+** Use cURL to POST request
 #+begin_example
 $ curl --insecure --http1.0 -X POST --header "Authorization: PVEAPIToken=guest@pve!vmpower="(pass ls pve.adm.intranet:8006/api/vmpower) --trace-ascii /dev/stdout https://pve:8006/api2/json/nodes/pve/qemu/400/status/start
 #+end_example
